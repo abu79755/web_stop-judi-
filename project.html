@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduJudi | Edukasi Bahaya Judi</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1120;
+    color: #f1f5f9;
+    line-height: 1.7;
+}
+
+header {
+    background: #111c30;
+    padding: 18px 7%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #263650;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    color: #38bdf8;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 12px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #38bdf8;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 8%;
+    background: linear-gradient(135deg, #172554, #0b1120);
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 30px;
+    background: #1e3a5f;
+    color: #7dd3fc;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: clamp(32px, 6vw, 52px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+h1 span {
+    color: #38bdf8;
+}
+
+.hero p {
+    color: #cbd5e1;
+    max-width: 600px;
+    margin: 0 auto 25px;
+}
+
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 12px 22px;
+    background: #0284c7;
+    color: white;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0369a1;
+}
+
+section.content {
+    padding: 60px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #94a3b8;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.info-box, .card, .quiz-box {
+    background: #111c30;
+    border: 1px solid #263650;
+    border-radius: 14px;
+    padding: 23px;
+}
+
+.info-box {
+    margin-bottom: 18px;
+}
+
+.info-box h3 {
+    color: #38bdf8;
+    margin-bottom: 8px;
+}
+
+.info-box p, .card p {
+    color: #cbd5e1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #38bdf8;
+}
+
+.card .emoji {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    margin-bottom: 8px;
+}
+
+.dark {
+    background: #0f1a2b;
+}
+
+.tip {
+    display: flex;
+    gap: 15px;
+    padding: 18px;
+    margin-bottom: 14px;
+    background: #111c30;
+    border-left: 4px solid #38bdf8;
+    border-radius: 10px;
+}
+
+.tip strong {
+    color: #38bdf8;
+    font-size: 22px;
+}
+
+.quote {
+    text-align: center;
+    padding: 55px 8%;
+    background: linear-gradient(135deg, #172554, #164e63);
+}
+
+.quote h2 {
+    margin-bottom: 12px;
+}
+
+.quote p {
+    max-width: 650px;
+    margin: auto;
+    color: #dbeafe;
+}
+
+.quiz-box {
+    max-width: 650px;
+    margin: auto;
+}
+
+#questionNumber {
+    color: #38bdf8;
+    margin-bottom: 12px;
+}
+
+#question {
+    margin-bottom: 18px;
+}
+
+.answers {
+    display: grid;
+    gap: 10px;
+}
+
+.answer {
+    padding: 13px;
+    border: 1px solid #334155;
+    background: #19283d;
+    color: white;
+    border-radius: 9px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.answer:hover:not(:disabled) {
+    border-color: #38bdf8;
+}
+
+.answer:disabled {
+    cursor: default;
+}
+
+.correct {
+    background: #14532d;
+    border-color: #4ade80;
+}
+
+.wrong {
+    background: #7f1d1d;
+    border-color: #fb7185;
+}
+
+#feedback {
+    margin-top: 15px;
+}
+
+#next {
+    margin-top: 18px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 7%;
+    background: #070d18;
+    color: #94a3b8;
+}
+
+footer strong {
+    color: #38bdf8;
+}
+
+@media (max-width: 650px) {
+    header {
+        padding: 15px 5%;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        margin-left: 5px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 65px 6%;
+    }
+
+    section.content {
+        padding: 45px 6%;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">🛡️ EduJudi</div>
+        <div>
+            <a href="#pengertian">Pengertian</a>
+            <a href="#dampak">Dampak</a>
+            <a href="#tips">Pencegahan</a>
+            <a href="#kuis">Kuis</a>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="badge">EDUKASI DIGITAL</div>
+    <h1>Kenali Bahaya<br><span>Judi Online</span></h1>
+    <p>
+        Kenali risikonya, lindungi masa depanmu,
+        dan gunakan teknologi untuk hal yang positif.
+    </p>
+    <a href="#pengertian" class="btn">Mulai Belajar ↓</a>
+</section>
+
+<section class="content" id="pengertian">
+    <h2 class="section-title">Apa Itu Judi?</h2>
+    <p class="subtitle">Kenali pengertian dan cara kerjanya secara umum.</p>
+
+    <div class="info-box">
+        <h3>🎲 Pengertian Judi</h3>
+        <p>
+            Judi adalah kegiatan mempertaruhkan uang atau sesuatu
+            yang bernilai pada hasil yang tidak pasti dengan harapan
+            memperoleh keuntungan. Peserta berisiko kehilangan
+            apa yang dipertaruhkan.
+        </p>
+    </div>
+
+    <div class="info-box">
+        <h3>📱 Apa Itu Judi Online?</h3>
+        <p>
+            Judi online merupakan perjudian yang dilakukan melalui
+            internet, misalnya melalui situs atau aplikasi.
+            Janji keuntungan tidak menjamin seseorang akan menang
+            dan justru dapat menimbulkan kerugian.
+        </p>
+    </div>
+</section>
+
+<section class="content dark" id="dampak">
+    <h2 class="section-title">⚠️ Dampak Negatif Judi</h2>
+    <p class="subtitle">Judi dapat memengaruhi berbagai aspek kehidupan.</p>
+
+    <div class="grid">
+        <div class="card">
+            <div class="emoji">💸</div>
+            <h3>Kerugian Finansial</h3>
+            <p>Uang dan tabungan bisa habis serta menimbulkan utang.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🧠</div>
+            <h3>Kesehatan Mental</h3>
+            <p>Kerugian akibat judi dapat memicu stres, kecemasan, dan rasa bersalah.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">👨‍👩‍👧</div>
+            <h3>Hubungan Keluarga</h3>
+            <p>Judi dapat merusak kepercayaan dan menimbulkan konflik keluarga.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">📚</div>
+            <h3>Pendidikan</h3>
+            <p>Waktu belajar dan konsentrasi dapat terganggu.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content" id="tips">
+    <h2 class="section-title">🛡️ Cara Menghindari Judi</h2>
+    <p class="subtitle">Mulai dari kebiasaan sederhana setiap hari.</p>
+
+    <div class="tip">
+        <strong>01</strong>
+        <div>
+            <h3>Isi Waktu dengan Kegiatan Positif</h3>
+            <p>Belajar, olahraga, membaca, atau mengembangkan hobi.</p>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>02</strong>
+        <div>
+            <h3>Jangan Percaya Janji Cepat Kaya</h3>
+            <p>Keuntungan tidak pasti dan uang yang dipertaruhkan bisa hilang.</p>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>03</strong>
+        <div>
+            <h3>Hindari Konten Judi</h3>
+            <p>Jangan klik tautan mencurigakan dan blokir akun yang mempromosikannya.</p>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>04</strong>
+        <div>
+            <h3>Berani Menolak Ajakan</h3>
+            <p>Jangan ikut-ikutan teman melakukan kegiatan yang berisiko.</p>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>05</strong>
+        <div>
+            <h3>Cari Bantuan</h3>
+            <p>Jika kesulitan berhenti, bicaralah kepada orang tua, guru BK, atau orang dewasa tepercaya.</p>
+        </div>
+    </div>
+</section>
+
+<section class="quote">
+    <h2>💡 Masa Depanmu Lebih Berharga</h2>
+    <p>
+        Jangan pertaruhkan masa depan demi keuntungan yang tidak pasti.
+        Kembangkan kemampuanmu dan pilih kegiatan yang bermanfaat.
+    </p>
+</section>
+
+<section class="content dark" id="kuis">
+    <h2 class="section-title">🧠 Kuis Edukasi</h2>
+    <p class="subtitle">Uji pemahamanmu dengan tiga pertanyaan!</p>
+
+    <div class="quiz-box">
+        <p id="questionNumber"></p>
+        <h3 id="question"></h3>
+        <div class="answers" id="answers"></div>
+        <p id="feedback" aria-live="polite"></p>
+        <button class="btn" id="next" hidden>Soal Berikutnya →</button>
+    </div>
+</section>
+
+<footer>
+    <strong>🛡️ EduJudi</strong>
+    <p>Website edukasi bahaya judi untuk pelajar.</p>
+    <p>© <span id="year"></span> EduJudi</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+const questions = [
+    {
+        question: "Apa salah satu dampak negatif judi?",
+        answers: [
+            "Tabungan selalu bertambah",
+            "Risiko kehilangan uang",
+            "Prestasi pasti meningkat",
+            "Tidak ada risiko"
+        ],
+        correct: 1,
+        explanation: "Judi dapat menyebabkan kerugian finansial."
+    },
+    {
+        question: "Bagaimana cara menghindari judi online?",
+        answers: [
+            "Mencoba karena penasaran",
+            "Mengikuti semua promosi",
+            "Memblokir konten judi dan memilih kegiatan positif",
+            "Meminjam uang untuk bermain"
+        ],
+        correct: 2,
+        explanation: "Hindari promosi judi dan pilih aktivitas yang bermanfaat."
+    },
+    {
+        question: "Jika sulit berhenti berjudi, apa yang sebaiknya dilakukan?",
+        answers: [
+            "Menyembunyikan masalah",
+            "Meminjam lebih banyak uang",
+            "Mengejar kerugian dengan terus bermain",
+            "Meminta bantuan orang tepercaya"
+        ],
+        correct: 3,
+        explanation: "Orang tepercaya dapat membantu mencari pertolongan."
+    }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+let finished = false;
+
+const numberEl = document.getElementById("questionNumber");
+const questionEl = document.getElementById("question");
+const answersEl = document.getElementById("answers");
+const feedbackEl = document.getElementById("feedback");
+const nextBtn = document.getElementById("next");
+
+function showQuestion() {
+    answered = false;
+    finished = false;
+
+    const q = questions[current];
+
+    numberEl.textContent =
+        "Pertanyaan " + (current + 1) + " dari " + questions.length;
+    questionEl.textContent = q.question;
+    answersEl.innerHTML = "";
+    feedbackEl.textContent = "";
+    nextBtn.hidden = true;
+    nextBtn.textContent = "Soal Berikutnya →";
+
+    q.answers.forEach(function(answer, index) {
+        const button = document.createElement("button");
+        button.textContent = answer;
+        button.className = "answer";
+
+        button.addEventListener("click", function() {
+            checkAnswer(index, button);
+        });
+
+        answersEl.appendChild(button);
+    });
+}
+
+function checkAnswer(index, selectedButton) {
+    if (answered) return;
+    answered = true;
+
+    const q = questions[current];
+    const buttons = answersEl.querySelectorAll("button");
+
+    buttons.forEach(function(button) {
+        button.disabled = true;
+    });
+
+    if (index === q.correct) {
+        score++;
+        selectedButton.classList.add("correct");
+        feedbackEl.textContent = "✅ Benar! " + q.explanation;
+        feedbackEl.style.color = "#4ade80";
+    } else {
+        selectedButton.classList.add("wrong");
+        buttons[q.correct].classList.add("correct");
+        feedbackEl.textContent = "❌ Belum tepat. " + q.explanation;
+        feedbackEl.style.color = "#fb7185";
+    }
+
+    nextBtn.hidden = false;
+
+    if (current === questions.length - 1) {
+        nextBtn.textContent = "Lihat Hasil";
+    }
+}
+
+function showResult() {
+    finished = true;
+    numberEl.textContent = "KUIS SELESAI";
+    questionEl.textContent = "Skor kamu: " + score + " dari " + questions.length;
+    answersEl.innerHTML = "";
+
+    feedbackEl.textContent = score === questions.length
+        ? "🏆 Hebat! Kamu memahami materi dengan baik."
+        : "💪 Terus semangat belajar! Baca kembali materi di atas.";
+
+    feedbackEl.style.color = "#38bdf8";
+    nextBtn.textContent = "Ulangi Kuis";
+    nextBtn.hidden = false;
+}
+
+nextBtn.addEventListener("click", function() {
+    if (finished) {
+        current = 0;
+        score = 0;
+        showQuestion();
+        return;
+    }
+
+    if (current < questions.length - 1) {
+        current++;
+        showQuestion();
+    } else {
+        showResult();
+    }
+});
+
+showQuestion();
+</script>
+
+</body>
+</html>
